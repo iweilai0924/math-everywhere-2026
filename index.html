@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="bg-tint">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="deck-build" content="20261114-133845">
+<title>數學無所不在｜賴以威</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="base.css">
+<style>
+.mode-hint{animation:hintfade .6s 4s forwards;}@keyframes hintfade{to{opacity:0;visibility:hidden;}}
+.h{font-size:var(--fs-hero);font-weight:700;color:var(--ink);line-height:1.3;border-top:3px solid var(--green-primary);padding-top:calc(1.3*var(--u));margin-bottom:calc(2*var(--u));flex:none;}
+.h small{display:block;font-size:calc(1.6*var(--u));font-weight:700;color:var(--green-primary);letter-spacing:.12em;margin-bottom:calc(.5*var(--u));}
+.main{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:safe center;gap:calc(1.6*var(--u));overflow:hidden;}
+.sp{flex:1;min-height:0;display:grid;gap:calc(3.2*var(--u));align-items:center;overflow:hidden;}
+.col{display:flex;flex-direction:column;gap:calc(1.5*var(--u));min-width:0;}
+.pic{margin:0;border-radius:var(--radius-md);overflow:hidden;background:var(--paper-tint);display:flex;align-items:center;justify-content:center;}
+.pic img{display:block;width:100%;height:100%;object-fit:cover;}
+.pic.fit img{object-fit:contain;}
+.cap{font-size:calc(1.3*var(--u));color:var(--mid-gray);line-height:1.4;margin-top:calc(.5*var(--u));}
+.t{font-size:calc(2.2*var(--u));line-height:1.55;color:var(--ink);}
+.t.l{font-size:calc(2.6*var(--u));}
+.t.s{font-size:calc(2*var(--u));}
+.m{color:var(--mid-gray);} .g{color:var(--green-primary);} .b{font-weight:700;}
+.cite{font-size:calc(1.3*var(--u));color:var(--mid-gray);line-height:1.4;flex:none;margin-top:calc(.8*var(--u));}
+.q{font-size:calc(3*var(--u));font-weight:700;line-height:1.5;color:var(--ink);border-left:calc(.5*var(--u)) solid var(--green-primary);padding-left:calc(2*var(--u));}
+.q.s{font-size:calc(2.5*var(--u));}
+.who{font-size:calc(2*var(--u));color:var(--mid-gray);margin-top:calc(1*var(--u));padding-left:calc(2.5*var(--u));}
+.box{background:var(--paper-warm);border-radius:var(--radius-md);padding:calc(1.6*var(--u)) calc(2*var(--u));}
+.box.g2{background:var(--green-dark);color:#fff;}
+.box.g2 .t{color:#fff;} .box.g2 .em{color:var(--vi-yellow);}
+.em{color:var(--green-primary);font-weight:700;}
+.row{display:grid;grid-template-columns:calc(15*var(--u)) 1fr;gap:calc(1.6*var(--u));align-items:center;border-bottom:1px solid #FCE8CF;padding:calc(1.1*var(--u)) 0;}
+.row:last-child{border-bottom:none;}
+.k{font-size:calc(4.2*var(--u));font-weight:700;color:var(--green-primary);line-height:1.05;white-space:nowrap;}
+.k small{font-size:calc(2*var(--u));margin-left:calc(.3*var(--u));}
+.kk{font-size:calc(6.5*var(--u));font-weight:700;color:var(--green-primary);line-height:1;}
+.cards{display:grid;gap:calc(2*var(--u));}
+.card{background:var(--paper-warm);border-top:calc(.45*var(--u)) solid var(--green-primary);border-radius:var(--radius-md);padding:calc(1.8*var(--u));display:flex;flex-direction:column;gap:calc(.9*var(--u));min-width:0;}
+.card .n{font-size:calc(1.6*var(--u));font-weight:700;color:var(--green-primary);letter-spacing:.12em;}
+.card .tt{font-size:calc(2.8*var(--u));font-weight:700;color:var(--ink);line-height:1.25;}
+.card .t{font-size:calc(2*var(--u));}
+.card img{width:100%;height:calc(13*var(--u));object-fit:cover;border-radius:var(--radius-sm);display:block;}
+.opt{display:flex;align-items:center;gap:calc(1.4*var(--u));background:#fff;border:2px solid var(--paper-warm);border-radius:var(--radius-md);padding:calc(1.3*var(--u)) calc(1.8*var(--u));}
+.opt b{flex:none;width:calc(4.4*var(--u));height:calc(4.4*var(--u));border-radius:50%;background:var(--green-primary);color:#fff;font-size:calc(2.4*var(--u));display:flex;align-items:center;justify-content:center;}
+.opt span{font-size:calc(2.6*var(--u));font-weight:700;color:var(--ink);}
+.poem{font-size:calc(2.6*var(--u));line-height:1.75;color:var(--ink);font-weight:500;}
+.poem .mk{color:var(--green-primary);font-weight:700;border-bottom:3px solid var(--vi-lime);}
+.eq{font-size:calc(3.2*var(--u));font-weight:700;color:var(--green-dark);line-height:1.4;}
+.chip{display:inline-block;background:var(--green-primary);color:#fff;font-weight:700;font-size:calc(2.6*var(--u));border-radius:var(--radius-sm);padding:calc(.4*var(--u)) calc(1.2*var(--u));margin:calc(.3*var(--u));}
+.chips{display:flex;flex-wrap:wrap;gap:calc(.4*var(--u));}
+.svgw{width:100%;display:block;}
+.svgw text{font-family:var(--font-family);}
+/* 封面 */
+.cv{padding:0;flex-direction:row;}
+.cv__l{width:46%;display:flex;flex-direction:column;justify-content:center;padding:0 calc(4*var(--u)) 0 var(--edge-x);gap:calc(1.6*var(--u));}
+.cv__en{font-size:calc(1.6*var(--u));font-weight:700;letter-spacing:.3em;color:var(--green-primary);}
+.cv__t{white-space:nowrap;font-size:calc(6*var(--u));font-weight:700;color:var(--ink);line-height:1.1;border-top:4px solid var(--green-primary);padding-top:calc(1.8*var(--u));}
+.cv__s{font-size:calc(2.4*var(--u));color:var(--ink);line-height:1.5;}
+.cv__who{font-size:calc(2*var(--u));color:var(--mid-gray);line-height:1.6;margin-top:calc(1.5*var(--u));}
+.cv__logo{display:block;height:calc(3*var(--u));width:auto;aspect-ratio:162.16/45.83;margin-top:calc(1.5*var(--u));}
+.cv__r{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:calc(.6*var(--u));}
+.cv__r img{width:100%;height:100%;object-fit:cover;display:block;min-height:0;}
+body:has(.deck .slide.active.cv){background:#FEF4E7;}
+/* 封面 v3：滿版拼貼＋深綠標題區 */
+.cv2{padding:0;overflow:hidden;}
+.cv2__m{position:absolute;top:0;bottom:0;right:0;left:36%;background:#215A39;}
+.cv2__m img{width:100%;height:100%;object-fit:cover;display:block;}
+.cv2__shade{position:absolute;inset:0;background:linear-gradient(90deg,#215A39 0%,#215A39 36%,rgba(33,90,57,.8) 44%,rgba(33,90,57,.25) 56%,rgba(33,90,57,0) 66%);}
+.cv2__c{position:absolute;left:var(--edge-x);top:50%;transform:translateY(-50%);width:44%;display:flex;flex-direction:column;gap:calc(1.6*var(--u));z-index:2;}
+.cv2__en{font-size:calc(1.6*var(--u));font-weight:700;letter-spacing:.32em;color:var(--vi-light-green);}
+.cv2__t{font-size:calc(8.4*var(--u));font-weight:700;color:#FFFFFF;line-height:1.08;letter-spacing:.04em;}
+.cv2__t span{color:var(--vi-yellow);}
+.cv2__s{font-size:calc(2.2*var(--u));color:#FFFFFF;line-height:1.6;border-left:calc(.45*var(--u)) solid var(--vi-yellow);padding-left:calc(1.6*var(--u));margin-top:calc(.6*var(--u));}
+.cv2__who{font-size:calc(2*var(--u));color:var(--vi-light-green);line-height:1.6;margin-top:calc(1.2*var(--u));}
+.cv2__who b{display:block;font-size:calc(2.8*var(--u));color:#FFFFFF;}
+.cv2__logo{color:#FFFFFF;display:block;height:calc(3*var(--u));width:auto;aspect-ratio:162.16/45.83;margin-top:calc(.8*var(--u));}
+body:has(.deck .slide.active.cv2){background:#215A39;}
+/* MV */
+.yt{position:relative;aspect-ratio:16/9;border-radius:var(--radius-md);overflow:hidden;cursor:pointer;background:#000;}
+.yt img{width:100%;height:100%;object-fit:cover;display:block;}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:3;}
+.yt__play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:calc(9*var(--u));height:calc(9*var(--u));border-radius:50%;background:rgba(190,32,38,.92);box-shadow:0 calc(.4*var(--u)) calc(1.6*var(--u)) rgba(0,0,0,.35);}
+.yt__play::after{content:"";position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);border-style:solid;border-width:calc(1.8*var(--u)) 0 calc(1.8*var(--u)) calc(3*var(--u));border-color:transparent transparent transparent #FFFFFF;}
+/* 湖南蟲：全幅配圖＋點一下換一段（照搬數感盃 R2-HN light） */
+.hn{overflow:hidden;}
+.hn__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;z-index:0;}
+.hn__scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(254,244,231,.85) 0%,rgba(254,244,231,0) 16%),linear-gradient(100deg,rgba(254,244,231,.94) 0%,rgba(254,244,231,.86) 44%,rgba(254,244,231,.25) 62%,rgba(254,244,231,0) 80%);}
+.hn > .slide-frame,.hn > .page-label,.hn > .brand-footer{z-index:2;}
+.hn > .slide-frame{text-align:left;justify-content:center;gap:calc(1.8*var(--u));}
+.hn__head{display:flex;align-items:baseline;gap:calc(1.6*var(--u));}
+.hn__title{font-size:calc(3.6*var(--u));font-weight:700;color:var(--ink);line-height:1.2;}
+.hn__by{font-size:calc(2.2*var(--u));font-weight:700;color:var(--green-primary);letter-spacing:.12em;}
+.hn__body{display:grid;grid-template-columns:calc(17*var(--u)) calc(44*var(--u));column-gap:calc(3.2*var(--u));align-items:center;cursor:pointer;}
+.hn__chips{display:flex;flex-direction:column;gap:calc(1.2*var(--u));}
+.hn__chip{display:flex;align-items:center;gap:calc(1*var(--u));font-size:calc(2.1*var(--u));font-weight:700;color:rgba(60,60,60,.4);padding:calc(.5*var(--u)) 0 calc(.5*var(--u)) calc(1*var(--u));border-left:calc(.45*var(--u)) solid rgba(60,60,60,.12);transition:color .4s ease,border-color .4s ease;cursor:pointer;}
+.hn__chip i{font-style:normal;font-weight:700;font-size:calc(2*var(--u));width:calc(2.2*var(--u));}
+.hn__body:not(.s1) .hn__chip:nth-child(1),.hn__body.s1:not(.s2) .hn__chip:nth-child(2),.hn__body.s2:not(.s3) .hn__chip:nth-child(3),.hn__body.s3 .hn__chip:nth-child(4){color:var(--green-dark);border-left-color:var(--green-primary);}
+.hn__stage{display:grid;}
+.hn__st{grid-area:1/1;opacity:0;transform:translateY(calc(1*var(--u)));transition:opacity .55s ease,transform .55s ease;pointer-events:none;}
+.hn__st p{margin:0;font-size:calc(2.6*var(--u));font-weight:500;color:var(--ink);line-height:1.55;letter-spacing:.04em;white-space:nowrap;}
+.hn__k{font-weight:700;color:var(--green-primary);}
+.hn__body:not(.s1) .hn__st:nth-child(1),.hn__body.s1:not(.s2) .hn__st:nth-child(2),.hn__body.s2:not(.s3) .hn__st:nth-child(3),.hn__body.s3 .hn__st:nth-child(4){opacity:1;transform:none;}
+.hn__hint{margin-top:calc(2.4*var(--u));font-size:calc(2*var(--u));font-weight:700;color:var(--mid-gray);transition:opacity .4s ease;}
+.hn__hint::before{content:"▶ ";}
+.hn__body.is-done .hn__hint{opacity:0;}
+.hn__cite{max-width:calc(54*var(--u));font-size:calc(1.4*var(--u));color:var(--mid-gray);letter-spacing:.04em;}
+html.edit-on .hn__stage{grid-template-columns:repeat(2,1fr);gap:calc(1*var(--u)) calc(3*var(--u));}
+html.edit-on .hn__st{grid-area:auto;opacity:1!important;transform:none;pointer-events:auto;}
+html.edit-on .hn__st p{font-size:calc(1.4*var(--u));line-height:1.4;}
+/* 結語：數學是語言，全幅背景 */
+.lang{overflow:hidden;}
+.lang__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;z-index:0;}
+.lang__scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(254,244,232,.92) 0%,rgba(254,244,232,.75) 34%,rgba(254,244,232,0) 52%);}
+.lang > .slide-frame,.lang > .page-label,.lang > .brand-footer{z-index:2;}
+.lang__q{white-space:nowrap;font-size:calc(2.9*var(--u));line-height:1.6;margin-top:auto;margin-bottom:auto;}
+.poem.st{font-size:calc(2.1*var(--u));line-height:1.5;}
+.lyr{border:2px dashed var(--green-primary);border-radius:var(--radius-md);padding:calc(1.2*var(--u)) calc(1.6*var(--u));background:#FFFFFF;}
+.lyr__lab{font-size:calc(1.6*var(--u));font-weight:700;color:var(--green-primary);letter-spacing:.2em;margin-bottom:calc(.4*var(--u));}
+.lyr__t{font-size:calc(2.4*var(--u));line-height:1.6;color:var(--ink);font-weight:500;}
+.trl{align-self:flex-start;display:flex;align-items:center;gap:calc(1.2*var(--u));text-decoration:none;color:var(--ink);background:#FFFFFF;border-radius:var(--radius-md);padding:calc(.8*var(--u));border:2px solid var(--paper-warm);}
+.trl img{width:calc(9*var(--u));aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius-sm);display:block;}
+.trl b{display:block;font-size:calc(2*var(--u));color:var(--green-primary);}
+.trl span{font-size:calc(1.6*var(--u));color:var(--mid-gray);}
+.poem.st .gap{display:block;height:calc(.8*var(--u));}
+/* 章節頁 */
+.chp{padding:0;flex-direction:row;}
+.chp__l{width:46%;position:relative;overflow:hidden;}
+.chp__l img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.chp__l::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(33,90,57,.15),rgba(33,90,57,.75));}
+.chp__num{position:absolute;left:calc(3*var(--u));bottom:calc(1*var(--u));z-index:2;font-size:calc(18*var(--u));font-weight:700;color:rgba(255,255,255,.85);line-height:.9;}
+.chp__r{flex:1;display:flex;flex-direction:column;justify-content:center;padding:calc(5*var(--u)) calc(7*var(--u)) calc(5*var(--u)) calc(6*var(--u));}
+.chp__lab{font-size:calc(1.6*var(--u));font-weight:700;letter-spacing:.3em;color:var(--green-primary);margin-bottom:calc(1*var(--u));}
+.chp__t{font-size:var(--fs-chapter-title);font-weight:700;color:var(--ink);border-top:3px solid var(--green-primary);padding-top:calc(1.8*var(--u));line-height:1.25;}
+.chp__s{font-size:calc(2.4*var(--u));color:var(--mid-gray);margin-top:calc(2*var(--u));line-height:1.6;}
+.chp__time{display:inline-block;margin-top:calc(2.5*var(--u));font-size:calc(2*var(--u));font-weight:700;color:var(--green-primary);border:2px solid var(--green-primary);border-radius:calc(10*var(--u));padding:calc(.3*var(--u)) calc(1.5*var(--u));align-self:flex-start;}
+body:has(.deck .slide.active.chp){background:#FEF4E7;}
+/* 呼吸頁 */
+.br{text-align:center;}
+.br .page-label{color:rgba(255,255,255,.7);} .br .page-label__num{background:rgba(255,255,255,.22);color:#fff;} .br .page-label__bar{background:rgba(255,255,255,.35);}
+.br__q{font-size:calc(4.2*var(--u));font-weight:700;color:#fff;line-height:1.45;}
+.br__q .y{color:var(--vi-yellow);}
+.br__s{font-size:calc(2.2*var(--u));color:var(--vi-light-green);margin-top:calc(2.4*var(--u));line-height:1.6;}
+body:has(.deck .slide.active.br){background:#215A39;}
+.hr{text-align:center;}
+.hr__q{font-size:calc(4.6*var(--u));font-weight:700;color:var(--ink);line-height:1.4;}
+.hr__q .g{color:var(--green-primary);}
+.hr__s{font-size:calc(2.4*var(--u));color:var(--mid-gray);margin-top:calc(2.4*var(--u));line-height:1.6;}
+/* 照片牆 */
+.wall{flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:calc(1.2*var(--u));}
+.wall figure{margin:0;position:relative;border-radius:var(--radius-md);overflow:hidden;min-height:0;}
+.wall img{width:100%;height:100%;object-fit:cover;display:block;}
+.wall figcaption{position:absolute;left:0;right:0;bottom:0;padding:calc(2.4*var(--u)) calc(1.2*var(--u)) calc(.8*var(--u));background:linear-gradient(180deg,transparent,rgba(33,90,57,.92));color:#fff;}
+.wall figcaption b{display:block;font-size:calc(2.3*var(--u));}
+.wall figcaption span{font-size:calc(1.6*var(--u));color:var(--vi-light-green);}
+/* 收尾 */
+.end{padding:0;}
+.end img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.end::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(33,90,57,.92) 0%,rgba(33,90,57,.75) 50%,rgba(33,90,57,.15) 100%);z-index:1;}
+.end__c{position:absolute;left:var(--edge-x);top:50%;transform:translateY(-50%);z-index:2;max-width:75%;}
+.end__t{font-size:calc(5.6*var(--u));font-weight:700;color:#fff;line-height:1.35;white-space:nowrap;}
+.end__q{font-size:calc(2.8*var(--u));color:#fff;line-height:1.6;margin-top:calc(2.5*var(--u));border-left:calc(.5*var(--u)) solid var(--vi-yellow);padding-left:calc(1.8*var(--u));}
+.end__w{font-size:calc(2*var(--u));color:var(--vi-light-green);margin-top:calc(1*var(--u));padding-left:calc(2.3*var(--u));}
+.end__c2{font-size:calc(2*var(--u));color:#fff;margin-top:calc(3*var(--u));}
+.end .brand-footer{z-index:3;}
+body:has(.deck .slide.active.end){background:#215A39;}
+.flow3{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:calc(1.4*var(--u));align-items:stretch;}
+.flow3 .ar{align-self:center;font-size:calc(4*var(--u));font-weight:700;color:var(--green-primary);}
+.flow3 .card{align-items:center;text-align:center;justify-content:center;}
+.flow3 .card svg{width:calc(10*var(--u));height:calc(10*var(--u));}
+.flow3 .card{padding:calc(2.6*var(--u)) calc(1.2*var(--u));}
+.flow3 .card .tt{font-size:calc(3*var(--u));white-space:nowrap;}
+.flow3 .card .t{font-size:calc(2.4*var(--u));}
+.tank{display:flex;gap:calc(1.2*var(--u));}
+.tank span{flex:1;text-align:center;font-size:calc(4*var(--u));font-weight:700;color:#fff;background:var(--green-dark);border-radius:var(--radius-md);padding:calc(1*var(--u)) 0;}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="nl-logo" viewBox="0 0 162.16 45.83"><g id="c"><path d="M45.83,22.92c0-3.53-2.56-6.46-5.93-7.03.32-.45.59-.93.79-1.43.35-.86.52-1.77.52-2.69,0-.23-.01-.46-.03-.68-.04-.46-.13-.91-.26-1.35-.33-1.1-.93-2.15-1.8-3.02-1.4-1.4-3.22-2.09-5.05-2.09-1.45,0-2.89.44-4.12,1.32,0,0,0,0,0,0-.58-3.37-3.5-5.93-7.03-5.93s-6.46,2.56-7.03,5.93c-.45-.32-.93-.59-1.43-.79-.86-.35-1.77-.52-2.69-.52-.46,0-.91.04-1.36.13-1.35.26-2.64.92-3.69,1.96-2.5,2.5-2.75,6.38-.78,9.17-3.37.58-5.93,3.5-5.93,7.03s2.56,6.46,5.93,7.03c-.32.45-.59.93-.79,1.43-.09.22-.16.43-.23.65-.13.44-.22.89-.26,1.35-.02.23-.03.46-.03.68,0,1.83.7,3.66,2.09,5.05.83.83,1.81,1.4,2.85,1.74.1.03.2.06.3.09.37.1.75.18,1.13.22.26.03.51.05.77.05s.53-.02.8-.05c.34-.04.68-.1,1.02-.19.15-.04.3-.08.45-.13.65-.22,1.28-.53,1.85-.93.58,3.36,3.5,5.93,7.03,5.93s6.46-2.56,7.03-5.93c0,0,0,0,0,0,1.23.87,2.67,1.31,4.12,1.31,1.83,0,3.66-.7,5.05-2.09,2.5-2.5,2.75-6.38.78-9.17,3.37-.58,5.93-3.5,5.93-7.03ZM16.31,38.61c-1.21,1.21-2.83,1.88-4.54,1.88s-3.33-.67-4.54-1.88c-1.21-1.21-1.88-2.83-1.88-4.54,0-1.48.5-2.89,1.42-4.03.13,0,.26.02.39.02,2.11,0,4.01-.92,5.31-2.38,1.45.16,2.8.79,3.85,1.84,1.21,1.21,1.88,2.83,1.88,4.54s-.67,3.33-1.88,4.54ZM40.49,34.07c0,1.72-.67,3.33-1.88,4.54-1.21,1.21-2.83,1.88-4.54,1.88s-3.31-.66-4.52-1.86l-.02-.02-15.25-15.25c0-.15.02-.29.02-.44,0-3.95-3.2-7.15-7.15-7.15-.13,0-.26.01-.39.02-.92-1.14-1.42-2.54-1.42-4.03,0-1.72.67-3.33,1.88-4.54,1.21-1.21,2.83-1.88,4.54-1.88s3.31.66,4.53,1.86l.03.04.02.02,15.22,15.22c0,.15-.02.29-.02.44,0,3.95,3.2,7.15,7.15,7.15.13,0,.26-.01.39-.02.92,1.14,1.42,2.54,1.42,4.03ZM39.07,15.79c-.13,0-.26-.02-.39-.02-2.11,0-4.01.92-5.31,2.38-1.45-.16-2.8-.79-3.85-1.84-1.21-1.21-1.88-2.83-1.88-4.54s.67-3.33,1.88-4.54,2.83-1.88,4.54-1.88,3.33.67,4.54,1.88,1.88,2.83,1.88,4.54c0,1.48-.5,2.89-1.42,4.03Z" style="fill:var(--logo-mark,currentColor)" stroke-width="0"/>
+<g class="nl-mark-color"><path style="fill:var(--logo-peach,transparent)" d="M 38.68 30.06 L 7.15 30.06 L 7.15 15.77 L 38.68 15.77 Z M 38.68 30.06 "/>
+<path style="fill:var(--logo-peach,transparent)" d="M 30.06 38.68 L 15.77 38.68 L 15.77 7.15 L 30.06 7.15 Z M 30.06 38.68 "/>
+<path style="fill:var(--logo-peach,transparent)" d="M 22.92 14.29 C 26.86 14.29 30.06 11.09 30.06 7.15 C 30.06 3.20 26.86 0.00 22.92 0.00 C 18.97 0.00 15.77 3.20 15.77 7.15 C 15.77 11.09 18.97 14.29 22.92 14.29 "/>
+<path style="fill:var(--logo-peach,transparent)" d="M 22.92 45.83 C 26.86 45.83 30.06 42.63 30.06 38.68 C 30.06 34.74 26.86 31.54 22.92 31.54 C 18.97 31.54 15.77 34.74 15.77 38.68 C 15.77 42.63 18.97 45.83 22.92 45.83 "/>
+<path style="fill:var(--logo-green,transparent)" d="M 29.01 39.11 L 6.71 16.82 L 16.82 6.71 L 39.12 29.01 Z M 29.01 39.11 "/>
+<path style="fill:var(--logo-green,transparent)" d="M 16.82 16.82 C 19.61 14.02 19.61 9.50 16.82 6.71 C 14.03 3.92 9.50 3.92 6.71 6.71 C 3.92 9.50 3.92 14.02 6.71 16.82 C 9.50 19.61 14.03 19.61 16.82 16.82 "/>
+<path style="fill:var(--logo-green,transparent)" d="M 39.12 39.11 C 41.91 36.32 41.91 31.80 39.12 29.01 C 36.33 26.22 31.81 26.22 29.01 29.01 C 26.22 31.80 26.22 36.32 29.01 39.11 C 31.81 41.91 36.33 41.91 39.12 39.11 "/>
+<path style="fill:var(--logo-green,transparent)" d="M 29.01 16.82 C 31.81 19.61 36.33 19.61 39.12 16.82 C 41.91 14.02 41.91 9.50 39.12 6.71 C 36.33 3.92 31.81 3.92 29.01 6.71 C 26.22 9.50 26.22 14.02 29.01 16.82 "/>
+<path style="fill:var(--logo-green,transparent)" d="M 6.71 39.11 C 9.50 41.91 14.03 41.91 16.82 39.11 C 19.61 36.32 19.61 31.80 16.82 29.01 C 14.03 26.22 9.50 26.22 6.71 29.01 C 3.92 31.80 3.92 36.32 6.71 39.11 "/>
+<path style="fill:var(--logo-peach,transparent)" d="M 14.29 22.92 C 14.29 18.97 11.09 15.77 7.15 15.77 C 3.20 15.77 0.00 18.97 0.00 22.92 C 0.00 26.86 3.20 30.06 7.15 30.06 C 11.09 30.06 14.29 26.86 14.29 22.92 "/>
+<path style="fill:var(--logo-peach,transparent)" d="M 45.83 22.92 C 45.83 18.97 42.63 15.77 38.68 15.77 C 34.74 15.77 31.54 18.97 31.54 22.92 C 31.54 26.86 34.74 30.06 38.68 30.06 C 42.63 30.06 45.83 26.86 45.83 22.92 "/></g><path d="M59.1,17.51h5.55v1.13h-1.86c-.47.85-.98,1.57-1.54,2.13.91.35,1.83.72,2.74,1.11l-.74,1.2c-1.03-.49-2.07-.95-3.12-1.38-.08.04-.15.08-.23.14-1.27.72-2.95,1.13-5.06,1.22l-.34-1.32c1.67.01,3.04-.2,4.11-.64-.89-.34-1.78-.65-2.68-.93.41-.49.78-1,1.12-1.53h-2.43v-1.13h3.1c.21-.39.41-.79.59-1.2h-3.19v-3.49h3.78v-.97h-3.44v-2.25h-.91v-1.05h.91v-2.35h3.44v-1.05h1.33v1.05h3.44v2.35h1.2v1.05h-1.2v2.25h-3.44v.97h3.8v3.49h-4.26c-.21.43-.44.83-.67,1.2ZM58.89,13.86h-2.49v1.4h2.49v-1.4ZM56.72,8.54h2.17v-1.3h-2.17v1.3ZM58.89,9.59h-2.17v1.2h2.17v-1.2ZM61.4,18.63h-3c-.23.32-.46.63-.68.93.73.23,1.48.48,2.22.74.53-.44,1.02-1,1.46-1.67ZM60.22,8.54h2.17v-1.3h-2.17v1.3ZM62.39,9.59h-2.17v1.2h2.17v-1.2ZM62.73,13.86h-2.51v1.4h2.51v-1.4ZM64.12,12.91c1.37-1.8,2.31-4.42,2.83-7.86l1.39.1c-.19,1.05-.41,2.03-.65,2.93h4.54v1.42h-1.12v1.59c0,2.81-.61,5.32-1.84,7.53.75,1.14,1.76,2.26,3.02,3.38l-1.03,1.09c-1.12-1.07-2.04-2.14-2.78-3.2-.81,1.16-1.81,2.24-3,3.22l-.95-1.18c1.29-1,2.35-2.11,3.16-3.36-.2-.38-.38-.75-.53-1.13-.52-1.25-.91-2.88-1.16-4.89-.29.56-.61,1.07-.95,1.53l-.93-1.16ZM68.47,17.2c.9-1.81,1.35-3.85,1.35-6.11v-1.59h-2.57c-.1.31-.2.61-.3.89.27,2.86.74,5.04,1.41,6.56.04.09.08.17.11.25Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M80.03,7.13h9.2v-1.98h1.37v1.98h3.95v1.26h-3.95c.03,2.39.12,4.44.29,6.13,1.17-1.22,2.03-2.63,2.59-4.23l1.18.52c-.7,2.1-1.88,3.91-3.54,5.45.09.57.18,1.08.29,1.53.53,2.28,1.03,3.41,1.5,3.41.37,0,.72-1,1.06-3.01l1.05,1.01c-.51,2.48-1.21,3.73-2.11,3.73-1.08,0-1.97-1.43-2.66-4.29-.11-.44-.22-.91-.3-1.4-.38.28-.79.56-1.22.83l-.91-1.14c.67-.4,1.29-.83,1.86-1.3-.28-2.08-.43-4.5-.44-7.26h-9.2v2.87c0,2.3-.58,4.44-1.73,6.4l-1.16-.83c1.01-1.71,1.52-3.56,1.52-5.57v-4.13h1.37ZM78,22.2c.48-1.24.83-2.52,1.05-3.84l1.24.19c-.19,1.36-.52,2.66-.99,3.92l-1.29-.27ZM81.08,9.77h6.98v1.2h-6.98v-1.2ZM81.08,21.08v-2.99h1.37v2.89c0,.34.17.5.51.5h2.28c.42,0,.63-.21.63-.62v-1.4l1.25.35v1.26c0,1.15-.52,1.73-1.56,1.73h-2.93c-1.04,0-1.56-.58-1.56-1.73ZM82.69,12.23h4.89v4.15h-6.14v-4.15h1.25ZM86.32,13.4h-3.63v1.82h3.63v-1.82ZM82.94,17.45l1.03-.66c.65.67,1.2,1.35,1.67,2.04l-1.1.66c-.41-.66-.94-1.34-1.6-2.04ZM87.41,18.44l1.2-.27c.56,1.27,1,2.49,1.31,3.67l-1.29.25c-.24-1.14-.65-2.35-1.22-3.65ZM91.48,5.65l.95-.58c.53.48.98.94,1.35,1.4l-1.03.64c-.28-.41-.7-.9-1.27-1.45Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M100.01,23.08l-.4-1.22c2.33-.14,4.58-.45,6.73-.91l.57,1.07c-2.21.53-4.51.89-6.9,1.07ZM114.08,13.3h-11.31v-2h-3.06v-1.07h3.06v-1.92h11.31v1.92h3.08v1.07h-3.08v2ZM115.26,7.42h-13.69v1.88h-1.39v-3.01h7.49c-.06-.41-.17-.85-.3-1.32l1.39-.1c.14.49.24.96.3,1.42h7.59v3.07h-1.39v-1.94ZM103.28,14.09h11.71v6.65h-13.1v-6.65h1.39ZM103.28,16.03h10.33v-.97h-10.33v.97ZM103.28,17.91h10.33v-.97h-10.33v.97ZM113.61,18.83h-10.33v.95h10.33v-.95ZM107.83,10.23v-.95h-3.69v.95h3.69ZM107.83,12.33v-1.03h-3.69v1.03h3.69ZM109.14,9.28v.95h3.57v-.95h-3.57ZM109.14,11.3v1.03h3.57v-1.03h-3.57ZM110.05,22.03l.61-.95c2,.15,4.24.46,6.71.91l-.61,1.2c-2.29-.52-4.53-.91-6.71-1.16Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M123.25,17.33c-.11,1.77-.27,3.53-.46,5.26l-.82-.08c.21-2.07.39-3.81.51-5.22l.76.04ZM122.7,14.75V5.83h6.39v1.18h-2.21v1.84h1.92v1.14h-1.92v1.77h1.92v1.14h-1.92v1.84h2.24v3.41c0,1.45-.04,2.45-.11,3.01-.06.62-.28,1.07-.65,1.36-.34.28-.94.43-1.79.43h-1.1l-.34-1.36h1.33c.48,0,.82-.09,1.03-.27.19-.15.31-.45.36-.87.05-.45.08-1.29.08-2.5v-2.02h-5.23v-1.18ZM124.43,17.22c.1,1.59.18,3.18.23,4.75l-.74.04c-.05-1.87-.11-3.45-.17-4.73l.69-.06ZM125.7,8.85v-1.84h-1.77v1.84h1.77ZM125.7,10h-1.77v1.77h1.77v-1.77ZM123.93,12.91v1.84h1.77v-1.84h-1.77ZM125.74,17.02c.16,1.22.32,2.42.46,3.63l-.74.08c-.14-1.42-.27-2.62-.38-3.59l.67-.12ZM127.03,16.87c.22.98.41,1.97.59,2.95l-.67.12c-.18-1.15-.34-2.12-.49-2.91l.57-.16ZM132.39,19.12c.63.5,1.21,1.05,1.73,1.65l-.87,1.01c-.39-.54-.82-1.05-1.27-1.53-.47,1.02-1.16,1.97-2.07,2.85l-1.03-.87c1.51-1.33,2.4-2.9,2.68-4.71l1.12.27c-.05.47-.15.91-.29,1.34ZM137.49,10.66h-5.95v-1.03c-.52.4-1.06.77-1.63,1.11l-.91-1.11c2.23-1.2,4.01-2.79,5.34-4.77l1.31.41c-.14.21-.29.41-.44.62,1.47,1.44,3.08,2.6,4.83,3.49l-.82,1.2c-.6-.34-1.17-.7-1.73-1.11v1.18ZM133.91,12.19v5.12h-3.9v-5.12h3.9ZM131.12,13.45v2.6h1.69v-2.6h-1.69ZM131.82,9.42h5.59c-1.07-.75-2.05-1.6-2.95-2.56-.8.94-1.68,1.8-2.64,2.56ZM137.22,19.39c1,.75,1.92,1.6,2.76,2.54l-.89,1.05c-.7-.91-1.47-1.74-2.32-2.5-.48.96-1.16,1.85-2.03,2.68l-1.01-.87c1.53-1.35,2.45-2.94,2.76-4.77l1.1.29c-.08.54-.2,1.07-.36,1.59ZM138.99,12.19v5.12h-3.86v-5.12h3.86ZM136.23,13.45v2.6h1.65v-2.6h-1.65Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M147.6,10.04h11.9v1.34h-6.96c-1.2,1.07-2.3,1.95-3.29,2.62,2.52-.1,5.31-.19,8.37-.27-.47-.44-.99-.89-1.56-1.36l1.03-.74c1.61,1.28,2.98,2.54,4.11,3.76l-1.16.83c-.33-.41-.72-.85-1.16-1.3-1.62.03-3.19.06-4.7.1v2.35h6.96v1.3h-6.96v2.23h7.95v1.4h-17.21v-1.4h7.83v-2.23h-6.81v-1.3h6.81v-2.29c-2.02.08-3.93.18-5.74.31l-.27-1.3c.68-.25,1.48-.73,2.4-1.45.52-.41,1.02-.83,1.5-1.26h-3.04v-1.34ZM160.21,8.41h-13.44v2.68h-1.41v-4.05h7.49c-.1-.56-.24-1.14-.42-1.77l1.41-.12c.15.65.28,1.27.38,1.88h7.4v4.05h-1.41v-2.68Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M56.02,32.13h1.88l3.7,5.97h.02v-5.97h1.42v7.97h-1.8l-3.78-6.16h-.02v6.16h-1.42v-7.97Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M73.01,37.17c0,.48-.08.91-.25,1.3-.17.39-.39.71-.68.99-.29.27-.62.48-1.01.62s-.81.22-1.27.22-.88-.07-1.27-.22c-.39-.15-.73-.35-1.02-.62-.29-.27-.51-.6-.68-.99-.16-.39-.24-.82-.24-1.3v-5.04h1.42v4.99c0,.23.03.46.09.69.06.23.16.43.3.61.14.18.32.33.55.44.23.11.51.17.85.17s.62-.06.85-.17c.23-.11.41-.26.55-.44.14-.18.24-.38.3-.61.06-.23.09-.46.09-.69v-4.99h1.42v5.04Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M76.56,32.13h2.22l2.07,5.66h.03l2.05-5.66h2.23v7.97h-1.41v-6.41h-.02l-2.42,6.41h-.99l-2.39-6.41h-.02v6.41h-1.35v-7.97Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M88.77,32.13h5.28v1.24h-3.86v2.03h3.66v1.19h-3.66v2.25h4.06v1.26h-5.48v-7.97Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M97.5,32.13h2.77c.38,0,.74.04,1.09.12.35.08.67.21.94.39.27.18.49.42.66.71.16.29.25.65.25,1.07,0,.58-.16,1.05-.49,1.41-.33.36-.77.61-1.33.74l2.13,3.54h-1.71l-1.85-3.38h-1.04v3.38h-1.42v-7.97ZM100.08,35.56c.2,0,.41-.01.61-.04.2-.03.38-.09.55-.17.16-.08.29-.2.4-.35.11-.15.16-.35.16-.59,0-.22-.05-.4-.15-.53s-.22-.25-.37-.33c-.15-.08-.32-.14-.51-.17-.19-.03-.38-.04-.56-.04h-1.28v2.24h1.16Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M108.94,32.13h1.23l3.43,7.97h-1.62l-.74-1.82h-3.46l-.72,1.82h-1.59l3.47-7.97ZM110.74,37.06l-1.23-3.24-1.25,3.24h2.48Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M121.79,33.99c-.21-.29-.48-.49-.82-.62-.34-.13-.67-.2-.99-.2-.41,0-.79.07-1.13.22-.34.15-.63.36-.87.62-.24.26-.43.57-.56.92-.13.35-.2.74-.2,1.15,0,.44.06.83.19,1.19.13.36.31.67.55.93.24.26.52.46.85.6.33.14.7.21,1.11.21s.81-.08,1.14-.25c.33-.17.6-.39.8-.67l1.14.8c-.35.44-.78.79-1.29,1.03-.51.24-1.11.37-1.79.37-.62,0-1.19-.1-1.72-.31-.52-.21-.97-.5-1.35-.87-.37-.37-.67-.81-.88-1.33-.21-.51-.31-1.08-.31-1.71s.11-1.21.33-1.73c.22-.51.53-.95.91-1.31.39-.36.84-.64,1.37-.83.53-.19,1.1-.29,1.71-.29.25,0,.52.02.8.07.28.05.54.12.8.23.26.1.5.23.72.38s.42.33.57.54l-1.08.86Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M127.52,36.64l-2.99-4.51h1.73l2,3.36,2.03-3.36h1.64l-2.99,4.51v3.46h-1.42v-3.46Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M138.86,32.13h1.42v6.71h3.39v1.26h-4.81v-7.97Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M148.97,32.13h1.23l3.43,7.97h-1.62l-.74-1.82h-3.46l-.72,1.82h-1.59l3.47-7.97ZM150.77,37.06l-1.23-3.24-1.25,3.24h2.48Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/><path d="M156.28,32.13h3.11c.3,0,.6.04.89.11.29.07.55.19.78.35.23.16.41.37.56.62.14.26.21.56.21.92,0,.45-.13.82-.38,1.11-.25.29-.59.5-1,.63v.02c.5.07.91.26,1.24.59s.48.75.48,1.29c0,.44-.09.8-.26,1.1-.17.3-.4.53-.68.71-.28.18-.6.31-.97.39-.36.08-.73.12-1.11.12h-2.87v-7.97ZM157.7,35.37h1.26c.47,0,.83-.09,1.08-.28.25-.19.37-.45.37-.8s-.13-.62-.38-.77c-.26-.15-.65-.23-1.19-.23h-1.14v2.07ZM157.7,38.9h1.27c.18,0,.38-.01.59-.04.21-.03.4-.08.58-.16.18-.08.32-.2.44-.36.12-.16.17-.37.17-.63,0-.42-.14-.71-.43-.88-.29-.17-.72-.25-1.29-.25h-1.33v2.32Z" style="fill:var(--logo-ink,currentColor)" stroke-width="0"/></g></symbol></svg>
+<div class="deck">
+<section class="slide cv2" style="background:#215A39;">
+<div class="cv2__m"><img src="assets/img/starry.jpg" alt="梵谷〈星夜〉" style="object-position:62% 40%"></div>
+<div class="cv2__shade"></div>
+<div class="cv2__c">
+<div class="cv2__en">MATHEMATICS IS EVERYWHERE</div>
+<div class="cv2__t">數學<br><span>無所不在</span></div>
+<div class="cv2__who"><b>賴以威</b>臺師大電機系副教授｜數感實驗室共同創辦人</div>
+<svg class="cv2__logo logo-mono" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg>
+</div>
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">02</span><span class="page-label__bar"></span><span>我是誰</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">電機工程師講數學？</div><div class="sp" style="grid-template-columns:calc(26*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(32*var(--u));"><img src="assets/brand/lai-portrait.jpg" alt="" style="object-position:50% 25%"></figure>
+<div class="col">
+<div class="row"><div class="k" style="font-size:calc(3*var(--u))">臺大電機</div><div class="t">博士，研究無線通訊、晶片設計</div></div>
+<div class="row"><div class="k" style="font-size:calc(3*var(--u))">臺師大</div><div class="t">電機系副教授</div></div>
+<div class="row"><div class="k" style="font-size:calc(3*var(--u))">數感實驗室</div><div class="t">共同創辦人</div></div>
+</div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">03</span><span class="page-label__bar"></span><span>我的父親</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">從父親說起</div><div class="sp" style="grid-template-columns:calc(24*var(--u)) 1fr;">
+<figure class="pic fit" style="height:calc(32*var(--u));background:transparent;"><img src="assets/brand/book-goodbye-dad-hd.png" alt="父子合著的書"></figure>
+<div class="col" style="gap:calc(2.4*var(--u));">
+<div><div class="q">「數學的學力，就是國力。<br>我想讓全台灣的學生，愛上數學。」</div></div>
+<div class="box"><div class="t">我記得老爸每天晚上吃飽飯後，坐在書桌前的背影。</div></div>
+</div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">04</span><span class="page-label__bar"></span><span>轉折</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">科普閱讀啟蒙了我的數學觀</div><div class="sp" style="grid-template-columns:calc(24*var(--u)) calc(25*var(--u)) 1fr;">
+<figure class="pic fit" style="height:calc(27*var(--u));background:transparent;"><img src="assets/img/book-bus-three-cover.jpg" alt="《為什麼公車一次來三班？》書封"></figure>
+<div class="col" style="gap:calc(2*var(--u));">
+<div class="kk" style="font-size:calc(2.8*var(--u));line-height:1.3;">《為什麼公車<br>一次來三班？》</div>
+<div class="t">原來數學不只是<br>寫論文的工具，<br>也可以拿來解釋生活。</div>
+</div>
+<div class="col" style="gap:0;">
+<div class="row"><div class="k">20<small>多本</small></div><div class="t">著作</div></div>
+<div class="row"><div class="k">1000<small>+篇</small></div><div class="t">數學科普文章</div></div>
+<div class="row"><div class="k">11<small>年</small></div><div class="t">聯合報數學專欄</div></div>
+<div class="row"><div class="k">3<small>本</small></div><div class="t">獲 Books from Taiwan 推薦</div></div>
+</div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">05</span><span class="page-label__bar"></span><span>數感實驗室</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">2016 年成立數感實驗室</div><div class="sp" style="grid-template-columns:1.25fr 1fr;">
+<figure class="pic" style="height:calc(32*var(--u));"><img src="assets/brand/founders.jpg" alt="" style="object-position:50% 35%"></figure>
+<div class="col" style="gap:0;">
+<div class="row" style="grid-template-columns:calc(17*var(--u)) 1fr;"><div class="k">50萬<small>+</small></div><div class="t">累計影響人次</div></div>
+<div class="row" style="grid-template-columns:calc(17*var(--u)) 1fr;"><div class="k">76<small>人</small></div><div class="t">團隊</div></div>
+<div class="row" style="grid-template-columns:calc(17*var(--u)) 1fr;"><div class="k">2021</div><div class="t">臺師大第一間<br>教育衍生新創</div></div>
+</div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">06</span><span class="page-label__bar"></span><span>今天的路線</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">兩條數學之路</div><div class="main"><div class="cards" style="grid-template-columns:repeat(3,1fr);">
+<div class="card"><img src="assets/img/tank.jpg" alt=""><div class="n">01｜</div><div class="tt">生活裡的數學</div><div class="t">新聞、樂透、星座、<br>廟裡的籤</div></div>
+<div class="card"><img src="assets/img/starry.jpg" alt="" style="object-position:40% 35%"><div class="n">02｜</div><div class="tt">數學與文化</div><div class="t">數學詩、名畫、<br>算額、老玩具</div></div>
+<div class="card"><img src="assets/brand/camp-class.jpg" alt=""><div class="n">03｜</div><div class="tt">結語</div><div class="t">為什麼那麼多人<br>說討厭數學？</div></div>
+</div></div></div>
+<img class="mascot mascot--sm mascot--br" src="assets/mascots/Num_O_09.png" alt="">
+
+</section>
+<section class="slide chp" style="background:#FEF4E7;">
+<div class="chp__l"><img src="assets/brand/fun-laugh.jpg" alt="" style="object-position:50% 50%;"><div class="chp__num">01</div></div>
+<div class="chp__r"><div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="chp__lab">CHAPTER 01</div><div class="chp__t">生活裡的數學</div><div class="chp__s">看清事實、做預測、做決策</div><div class="chp__time">40 分鐘</div></div>
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">08</span><span class="page-label__bar"></span><span>數學好用</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">數學在生活裡，至少能幫我們做三件事</div><div class="main"><div class="flow3">
+<div class="card"><svg viewBox="0 0 64 64" fill="none" stroke="#379C39" stroke-width="4"><path d="M4 32s10-18 28-18 28 18 28 18-10 18-28 18S4 32 4 32z"/><circle cx="32" cy="32" r="9"/></svg><div class="n">01</div><div class="tt">看清事實</div><div class="t">這個數字<br>有沒有被用錯？</div></div><div class="ar">→</div>
+<div class="card"><svg viewBox="0 0 64 64" fill="none" stroke="#379C39" stroke-width="4"><path d="M8 52l14-16 10 8 22-26"/><path d="M42 18h12v12"/></svg><div class="n">02</div><div class="tt">做預測</div><div class="t">從手上的線索<br>推估看不到的</div></div><div class="ar">→</div>
+<div class="card"><svg viewBox="0 0 64 64" fill="none" stroke="#379C39" stroke-width="4"><circle cx="32" cy="32" r="24"/><path d="M22 33l7 7 14-16"/></svg><div class="n">03</div><div class="tt">做決策</div><div class="t">算清楚了<br>再出手</div></div>
+</div></div></div>
+<img class="mascot mascot--sm mascot--tr" src="assets/mascots/Num_G_03.png" alt="">
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">09</span><span class="page-label__bar"></span><span>01 看清事實</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">「一發攔截率 70%，三發就是 210%？」</div><div class="sp" style="grid-template-columns:calc(34*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(31*var(--u));"><img src="assets/img/intercept.png" alt="" style="object-position:50% 40%"></figure>
+<div class="col" style="gap:calc(1.8*var(--u));">
+<div class="t l">攔截率超過 100%，哪裡怪怪的？</div>
+<div class="col" data-reveal style="gap:calc(1.4*var(--u));">
+<div class="box"><div class="t">三發都沒攔到：<span class="b">0.3 × 0.3 × 0.3 ＝ 2.7%</span></div></div>
+<div class="box g2"><div class="t">至少攔到一發：<span class="em">97.3%</span></div></div>
+<div class="t s m">很高，但機率不能這樣直接加</div>
+</div></div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">10</span><span class="page-label__bar"></span><span>01 看清事實</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">戰機飛回來了，裝甲要加在哪裡？</div><div class="sp" style="grid-template-columns:calc(38*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(29*var(--u));background:#fff;"><img src="assets/img/plane.png" alt="" style="object-fit:contain"></figure>
+<div class="col" style="gap:calc(1.8*var(--u));">
+<div class="t l">紅點，是飛回來的戰機身上的彈孔。</div>
+<div class="col" data-reveal style="gap:calc(1.4*var(--u));">
+<div class="box g2"><div class="t">加在<span class="em">沒有彈孔</span>的地方</div></div>
+<div class="t">因為被打中那裡的飛機，<br>根本沒有飛回來。</div>
+<div class="t s m">統計學家 Abraham Wald｜倖存者偏差</div>
+</div></div></div></div>
+<img class="mascot mascot--sm mascot--br" src="assets/mascots/Num_O_02.png" alt="">
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">11</span><span class="page-label__bar"></span><span>01 看清事實</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">為什麼你搭的車，總是特別擠？</div><div class="sp" style="grid-template-columns:1.2fr 1fr;">
+<figure class="pic" style="height:calc(31*var(--u));"><img src="assets/img/crowded-train.jpg" alt=""></figure>
+<div class="col" style="gap:calc(1.8*var(--u));">
+<div class="box"><div class="n" style="font-size:calc(2*var(--u));font-weight:700;color:var(--green-primary);">乘客說</div><div class="t l">天天擠得像沙丁魚。</div></div>
+<div class="box"><div class="n" style="font-size:calc(2*var(--u));font-weight:700;color:var(--green-primary);">捷運公司說</div><div class="t l">大部分班次，載客率都很正常。</div></div>
+<div class="t">到底是誰在說謊？</div>
+</div></div><div class="cite">照片：nesnad，Wikimedia Commons（CC BY 3.0）</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">12</span><span class="page-label__bar"></span><span>01 看清事實</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">兩邊都沒說謊，只是分母不一樣</div><div class="main" style="gap:calc(1.6*var(--u));">
+<div style="width:calc(56*var(--u));align-self:center;"><svg class="svgw" viewBox="0 0 1000 330" role="img" aria-label="十班車的載客人數"><rect x="10" y="237" width="86" height="23" rx="8" fill="#8DC556"/><text x="53.0" y="227" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">50</text><text x="53.0" y="300" text-anchor="middle" font-size="26" fill="#686968">第1班</text><rect x="108" y="237" width="86" height="23" rx="8" fill="#8DC556"/><text x="151.0" y="227" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">50</text><text x="151.0" y="300" text-anchor="middle" font-size="26" fill="#686968">第2班</text><rect x="206" y="237" width="86" height="23" rx="8" fill="#8DC556"/><text x="249.0" y="227" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">50</text><text x="249.0" y="300" text-anchor="middle" font-size="26" fill="#686968">第3班</text><rect x="304" y="237" width="86" height="23" rx="8" fill="#8DC556"/><text x="347.0" y="227" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">50</text><text x="347.0" y="300" text-anchor="middle" font-size="26" fill="#686968">第4班</text><rect x="402" y="30" width="86" height="230" rx="8" fill="#215A39"/><text x="445.0" y="20" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">500</text><text x="445.0" y="300" text-anchor="middle" font-size="26" fill="#686968">第5班</text><rect x="500" y="237" width="86" height="23" rx="8" fill="#8DC556"/><text x="543.0" y="227" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">50</text><text x="543.0" y="300" text-anchor="middle" font-size="26" fill="#686968">第6班</text><rect x="598" y="237" width="86" height="23" rx="8" fill="#8DC556"/><text x="641.0" y="227" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">50</text><text x="641.0" y="300" text-anchor="middle" font-size="26" fill="#686968">第7班</text><rect x="696" y="237" width="86" height="23" rx="8" fill="#8DC556"/><text x="739.0" y="227" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">50</text><text x="739.0" y="300" text-anchor="middle" font-size="26" fill="#686968">第8班</text><rect x="794" y="237" width="86" height="23" rx="8" fill="#8DC556"/><text x="837.0" y="227" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">50</text><text x="837.0" y="300" text-anchor="middle" font-size="26" fill="#686968">第9班</text><rect x="892" y="237" width="86" height="23" rx="8" fill="#8DC556"/><text x="935.0" y="227" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">50</text><text x="935.0" y="300" text-anchor="middle" font-size="26" fill="#686968">第10班</text><line x1="0" y1="260" x2="1000" y2="260" stroke="#3C3C3C" stroke-width="2"/></svg></div>
+<div class="sp" style="grid-template-columns:1fr 1fr;flex:none;gap:calc(2*var(--u));" data-reveal>
+<div class="box" style="text-align:center;"><div class="t m">捷運公司數「班次」</div><div class="kk" style="font-size:calc(4*var(--u))">10%</div><div class="t">的車很擠</div></div>
+<div class="box g2" style="text-align:center;"><div class="t">我們數「人」</div><div class="kk" style="font-size:calc(4*var(--u));color:var(--vi-yellow)">53%</div><div class="t">的人在擠的車上（500 ÷ 950）</div></div>
+</div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">13</span><span class="page-label__bar"></span><span>02 做預測</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">抓到 5 台坦克，德軍總共有幾台？</div><div class="sp" style="grid-template-columns:calc(34*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(30*var(--u));"><img src="assets/img/tank.jpg" alt=""></figure>
+<div class="col" style="gap:calc(1.8*var(--u));">
+<div class="t">繳獲的坦克上，序號是：</div>
+<div class="tank"><span>27</span><span>40</span><span>18</span><span>5</span><span>10</span></div>
+<div class="col" data-reveal style="gap:calc(1*var(--u));">
+<div class="t">最大值 ＋ 最大值 ÷ 抓到幾台 − 1</div>
+<div class="eq">40 ＋ 40 ÷ 5 − 1 ＝ <span class="g">47</span> 台</div>
+</div></div></div></div>
+<img class="mascot mascot--sm mascot--br" src="assets/mascots/Num_O_26.png" alt="">
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">14</span><span class="page-label__bar"></span><span>02 做預測</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">數學家和間諜，誰估得比較準？</div><div class="sp" style="grid-template-columns:1.7fr 1fr;">
+<div><svg class="svgw" viewBox="0 0 1000 520" role="img" aria-label="數學家與間諜估計對照"><line x1="90" y1="450" x2="980" y2="450" stroke="#FCE8CF" stroke-width="2"/><text x="78" y="458" text-anchor="end" font-size="24" fill="#686968">0</text><line x1="90" y1="331" x2="980" y2="331" stroke="#FCE8CF" stroke-width="2"/><text x="78" y="339" text-anchor="end" font-size="24" fill="#686968">500</text><line x1="90" y1="212" x2="980" y2="212" stroke="#FCE8CF" stroke-width="2"/><text x="78" y="220" text-anchor="end" font-size="24" fill="#686968">1000</text><line x1="90" y1="94" x2="980" y2="94" stroke="#FCE8CF" stroke-width="2"/><text x="78" y="102" text-anchor="end" font-size="24" fill="#686968">1500</text><g><rect x="120" y="410" width="70" height="40" rx="6" fill="#379C39"/><text x="155" y="400" text-anchor="middle" font-size="28" font-weight="700" fill="#3C3C3C">169</text></g><g><rect x="202" y="212" width="70" height="238" rx="6" fill="#686968"/><text x="237" y="202" text-anchor="middle" font-size="28" font-weight="700" fill="#3C3C3C">1000</text></g><g data-reveal><rect x="284" y="421" width="70" height="29" rx="6" fill="#215A39"/><text x="319" y="411" text-anchor="middle" font-size="28" font-weight="700" fill="#3C3C3C">122</text></g><text x="237" y="494" text-anchor="middle" font-size="28" fill="#3C3C3C">1940/6</text><g><rect x="410" y="392" width="70" height="58" rx="6" fill="#379C39"/><text x="445" y="382" text-anchor="middle" font-size="28" font-weight="700" fill="#3C3C3C">244</text></g><g><rect x="492" y="82" width="70" height="368" rx="6" fill="#686968"/><text x="527" y="72" text-anchor="middle" font-size="28" font-weight="700" fill="#3C3C3C">1550</text></g><g data-reveal><rect x="574" y="386" width="70" height="64" rx="6" fill="#215A39"/><text x="609" y="376" text-anchor="middle" font-size="28" font-weight="700" fill="#3C3C3C">271</text></g><text x="527" y="494" text-anchor="middle" font-size="28" fill="#3C3C3C">1941/6</text><g><rect x="700" y="372" width="70" height="78" rx="6" fill="#379C39"/><text x="735" y="362" text-anchor="middle" font-size="28" font-weight="700" fill="#3C3C3C">327</text></g><g><rect x="782" y="82" width="70" height="368" rx="6" fill="#686968"/><text x="817" y="72" text-anchor="middle" font-size="28" font-weight="700" fill="#3C3C3C">1550</text></g><g data-reveal><rect x="864" y="369" width="70" height="81" rx="6" fill="#215A39"/><text x="899" y="359" text-anchor="middle" font-size="28" font-weight="700" fill="#3C3C3C">342</text></g><text x="817" y="494" text-anchor="middle" font-size="28" fill="#3C3C3C">1942/8</text><line x1="90" y1="450" x2="980" y2="450" stroke="#3C3C3C" stroke-width="2"/></svg></div>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="t"><span style="color:#379C39">■</span> 數學家估計</div>
+<div class="t"><span style="color:#686968">■</span> 間諜情報</div>
+<div class="t"><span style="color:#215A39">■</span> 戰後查到的實際數量</div>
+<div class="box" data-reveal><div class="t">只靠幾個<span class="em">序號</span>，<br>數學家贏了整個情報網</div></div>
+</div></div><div class="cite">資料：Ruggles &amp; Brodie (1947), Journal of the American Statistical Association</div></div>
+
+
+</section>
+<section class="slide br" style="background:#215A39;">
+<div class="page-label"><span class="page-label__num">15</span><span class="page-label__bar"></span><span>03 做決策</span></div>
+<div class="brand-footer"><svg class="brand-logo logo-mono" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame" style="justify-content:center;align-items:center;"><div class="br__q">幫你看見別人看不見的，<br>有時候<span class="y">價值連城</span>。</div><div class="br__s">第三件事：做決策</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">16</span><span class="page-label__bar"></span><span>03 做決策</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">先漲價 50%，再打 5 折，你要付多少？</div><div class="sp" style="grid-template-columns:1fr 1fr;">
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="opt"><b>A</b><span>跟原價一樣</span></div>
+<div class="opt"><b>B</b><span>比原價便宜</span></div>
+<div class="opt"><b>C</b><span>比原價貴</span></div>
+</div>
+<div class="col" data-reveal style="gap:calc(1.4*var(--u));">
+<div class="eq" style="font-size:calc(3.6*var(--u))">100 → 150 → <span class="g">75</span></div>
+<div class="box g2"><div class="t">5 折打在<span class="em">漲價後</span>的 150 上</div></div>
+<div class="t">答案是 B：只要付原價的 75%</div>
+</div></div></div>
+<img class="mascot mascot--sm mascot--br" src="assets/mascots/Num_O_18.png" alt="">
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">17</span><span class="page-label__bar"></span><span>03 做決策</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">有人靠數學，在樂透裡贏了好幾百萬美元</div><div class="sp" style="grid-template-columns:1fr 1fr 1.05fr;gap:calc(2*var(--u));">
+<div class="col" style="gap:calc(.8*var(--u));"><figure class="pic" style="height:calc(22*var(--u));background:#fff;"><img src="assets/img/lotto-bbc.png" alt="" style="object-position:50% 0%"></figure><div class="t s"><span class="b">密西根退休夫婦</span><br>10 年贏 2600 萬美元</div></div>
+<div class="col" style="gap:calc(.8*var(--u));"><figure class="pic" style="height:calc(22*var(--u));background:#fff;"><img src="assets/img/lotto-mit.png" alt="" style="object-position:50% 0%"></figure><div class="t s"><span class="b">MIT 學生</span><br>在麻州樂透贏 800 萬美元</div></div>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="box"><div class="t">他們讀懂了一條規則：頭獎沒人中，獎金就<span class="b">往下分</span>給小獎</div></div>
+<div class="box g2" data-reveal><div class="t">就在那幾期，<br>每張彩券的<span class="em">期望值</span><br>比售價還高</div></div>
+</div></div><div class="cite">BBC 中文，2022/7/30；MIT 學生報導，2012/8/7</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">18</span><span class="page-label__bar"></span><span>03 做決策</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">台灣也有過一次：大福彩的最後一期</div><div class="main">
+<figure class="pic" style="height:calc(12*var(--u));background:#fff;"><img src="assets/img/lotto-cna.png" alt="" style="object-fit:contain"></figure>
+<div class="cards" style="grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;">
+<div class="card" style="text-align:center"><div class="n">最後一期</div><div class="tt">頭獎 3.82 億</div><div class="t">沒有人中</div></div><div class="k" style="font-size:calc(3.6*var(--u))">→</div>
+<div class="card" style="text-align:center"><div class="n">規則</div><div class="tt">獎金往下分</div><div class="t">分給貳獎以下</div></div><div class="k" style="font-size:calc(3.6*var(--u))">→</div>
+<div class="card" style="text-align:center;background:var(--green-dark);" data-reveal><div class="n" style="color:var(--vi-light-green)">結果</div><div class="tt" style="color:var(--vi-yellow)">5.5 倍</div><div class="t" style="color:#fff">25 萬多注<br>領到 5.5 倍獎金</div></div>
+</div></div><div class="cite">中央社，2019/4/27</div></div>
+<img class="mascot mascot--sm mascot--br" src="assets/mascots/Num_O_04.png" alt="">
+
+</section>
+<section class="slide hr" style="background:#FFFFFF;">
+<div class="page-label"><span class="page-label__num">19</span><span class="page-label__bar"></span><span>好玩的數學</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame" style="justify-content:center;align-items:center;"><div class="hr__q">數學也可以拿來<br><span class="g">換個角度看世界</span></div><div class="hr__s">星座、廟宇、孔子、李白</div></div>
+<img class="mascot mascot--sm mascot--br" src="assets/mascots/Num_O_07.png" alt="">
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">20</span><span class="page-label__bar"></span><span>星座的數學</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">什麼星座，最容易當上國家領袖？</div><div class="sp" style="grid-template-columns:calc(46*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(30*var(--u));"><img src="assets/img/zodiac-news-crop.png" alt="蘋果日報〈全球187國領袖 天蠍座最多〉" style="object-position:50% 0%"></figure>
+<div class="col" style="gap:calc(1.6*var(--u));">
+<div class="t">全世界 187 位國家領袖，<br>平均每個星座約 <span class="b">15.6 人</span></div>
+<div class="box g2" data-reveal><div class="t">天蠍座 <span class="em">22 人</span>，<br>是平均的 1.41 倍</div></div>
+</div></div><div class="cite">蘋果日報，2015/6/14</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">21</span><span class="page-label__bar"></span><span>廟宇的數學</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">哪一間廟，比較容易抽到好籤？</div><div class="main" style="gap:calc(1.4*var(--u));">
+<div class="t s"><span style="color:#379C39">■</span> 上籤　<span style="color:#C3D94E">■</span> 中籤　<span style="color:#686968">■</span> 下籤　□ 未標示</div>
+<div style="width:calc(76*var(--u));align-self:center;"><svg class="svgw" viewBox="0 0 1100 330" role="img" aria-label="三間廟的籤詩上中下比例"><text x="134" y="72" text-anchor="end" font-size="32" font-weight="700" fill="#3C3C3C">行天宮</text><rect x="150" y="20" width="471" height="78" rx="4" fill="#379C39"/><text x="387" y="71" text-anchor="middle" font-size="30" font-weight="700" fill="#fff">51%</text><rect x="624" y="20" width="239" height="78" rx="4" fill="#C3D94E"/><text x="745" y="71" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">26%</text><rect x="866" y="20" width="211" height="78" rx="4" fill="#686968"/><text x="973" y="71" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">23%</text><text x="134" y="177" text-anchor="end" font-size="32" font-weight="700" fill="#3C3C3C">龍山寺</text><rect x="150" y="125" width="434" height="78" rx="4" fill="#379C39"/><text x="369" y="176" text-anchor="middle" font-size="30" font-weight="700" fill="#fff">47%</text><rect x="587" y="125" width="248" height="78" rx="4" fill="#C3D94E"/><text x="713" y="176" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">27%</text><rect x="838" y="125" width="6" height="78" rx="4" fill="#686968"/><rect x="848" y="125" width="230" height="78" rx="4" fill="#FCE8CF"/><text x="964" y="176" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">25%</text><text x="134" y="282" text-anchor="end" font-size="32" font-weight="700" fill="#3C3C3C">關渡宮</text><rect x="150" y="230" width="313" height="78" rx="4" fill="#379C39"/><text x="308" y="281" text-anchor="middle" font-size="30" font-weight="700" fill="#fff">34%</text><rect x="466" y="230" width="378" height="78" rx="4" fill="#C3D94E"/><text x="657" y="281" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">41%</text><rect x="848" y="230" width="230" height="78" rx="4" fill="#686968"/><text x="964" y="281" text-anchor="middle" font-size="30" font-weight="700" fill="#3C3C3C">25%</text></svg></div>
+<div class="box g2" data-reveal><div class="t">籤不是平均分配的：<span class="em">上籤最多，下籤很少</span></div></div>
+</div><div class="cite">資料：各廟籤詩等第，數感實驗室整理；三間廟各 100 支</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">22</span><span class="page-label__bar"></span><span>星座的數學</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">天蠍座，真的特別有領袖氣質？</div><div class="sp" style="grid-template-columns:calc(28*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(28*var(--u));"><img src="assets/img/eslite-zodiac.jpg" alt=""></figure>
+<div class="col" style="gap:calc(1.5*var(--u));">
+<div class="t">先問一個問題：一般人裡，十二星座本來就一樣多嗎？</div>
+<div class="box"><div class="t">美國人口：天蠍 <span class="b">9.6%</span>、處女 <span class="b">9.4%</span><br><span class="m">（平均分配的話，每個星座 8.3%）</span></div></div>
+<div class="box g2" data-reveal><div class="t">天蠍座多，有一部分只是因為<br>天蠍座的人<span class="em">本來就比較多</span></div></div>
+</div></div><div class="cite">美國人口星座比例：數感實驗室整理（星座領袖.xlsx）</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">23</span><span class="page-label__bar"></span><span>文本的數學</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">《論語》裡，孔子最常點名哪位學生？</div><div class="sp" style="grid-template-columns:calc(33*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(33*var(--u));"><img src="assets/img/confucius.jpg" alt=""></figure>
+<div class="col" style="gap:0;">
+<div class="row"><div class="k">55<small>次</small></div><div class="t">子路</div></div>
+<div class="row"><div class="k">43<small>次</small></div><div class="t">子貢</div></div>
+<div class="row"><div class="k">33<small>次</small></div><div class="t">顏回</div></div>
+<div class="row"><div class="k">23<small>次</small></div><div class="t">子夏</div></div>
+</div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">24</span><span class="page-label__bar"></span><span>文本的數學</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">李白最愛哪個顏色？</div><div class="sp" style="grid-template-columns:calc(36*var(--u)) 1fr;">
+<figure class="pic fit" style="height:calc(36*var(--u));background:#fff;"><img src="assets/img/libai-white.jpg" alt="李白詩中顏色字統計"></figure>
+<div class="col" style="gap:calc(1.6*var(--u));">
+<div class="t">白雲、白玉、白鷺、白璧……</div>
+<div class="box g2"><div class="t">李白最愛的顏色是<span class="em">白</span></div></div>
+<div class="t m s">（他的名字裡也有一個白）</div>
+</div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">25</span><span class="page-label__bar"></span><span>文本的數學</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">詩人最愛在哪個季節動筆？</div><div class="sp" style="grid-template-columns:calc(36*var(--u)) 1fr;">
+<figure class="pic fit" style="height:calc(36*var(--u));background:#fff;"><img src="assets/img/seasons.jpg" alt="歷代文人寫詩的季節統計"></figure>
+<div class="col" style="gap:calc(1.6*var(--u));">
+<div class="t">從《詩經》、《楚辭》<br>到全唐詩、唐宋詞</div>
+<div class="box g2"><div class="t"><span class="em">春天跟秋天</span>最多</div></div>
+<div class="t m s">傷春悲秋，原來數得出來</div>
+</div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">26</span><span class="page-label__bar"></span><span>度量衡</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">同樣是「一尺」，為什麼越來越長？</div><div class="sp" style="grid-template-columns:calc(34*var(--u)) 1fr;">
+<figure class="pic fit" style="height:calc(34*var(--u));background:transparent;"><img src="assets/img/ruler-dynasties-numeracylab.jpg" alt="數感實驗室〈中國度量衡大揭秘：各朝代的1尺〉"></figure>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="card"><div class="n">說法一</div><div class="t">做尺的技術變好了</div></div>
+<div class="card"><div class="n">說法二</div><div class="t">買賣變多，要量的東西變長</div></div>
+<div class="card" data-reveal style="background:var(--green-dark);border-top-color:var(--vi-yellow);"><div class="n" style="color:var(--vi-light-green)">說法三</div><div class="t" style="color:#fff">尺變長，稅就<span class="em">偷偷變多</span></div></div>
+</div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">27</span><span class="page-label__bar"></span><span>生活數學</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">赤崁樓，是用一張牛皮圍出來的？</div><div class="sp" style="grid-template-columns:calc(40*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(30*var(--u));"><img src="assets/img/chihkan.jpg" alt=""></figure>
+<div class="col" style="gap:calc(1.6*var(--u));">
+<div class="q s">「牛皮今剝落，<br>尚有赤嵌樓。」</div><div class="who" style="margin-top:0">《重修臺灣縣志》</div>
+<div class="t">傳說荷蘭人跟原住民借「一張牛皮大的地」</div>
+<div class="box g2" data-reveal><div class="t">把牛皮剪成細條：面積沒變，<br><span class="em">剪得越細，圍得越大</span></div></div>
+</div></div></div>
+
+
+</section>
+<section class="slide chp" style="background:#FEF4E7;">
+<div class="chp__l"><img src="assets/img/starry.jpg" alt="" style="object-position:35% 40%;"><div class="chp__num">02</div></div>
+<div class="chp__r"><div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="chp__lab">CHAPTER 02</div><div class="chp__t">數學與文化</div><div class="chp__s">數學詩、名畫、算額，<br>還有一百年前的數學玩具</div><div class="chp__time">40 分鐘</div></div>
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">29</span><span class="page-label__bar"></span><span>數學詩</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">這首詩，是誰寫的？</div><div class="sp" style="grid-template-columns:1.5fr 1fr;">
+<div class="q" style="font-size:calc(2.8*var(--u));">「我努力用毫秒記著日子，<br>卻總記不完每一節課。<br>一節課四十分鐘，<br>七節課卻像等了四十分鐘的七次方，<br>究竟我何時能走出校門？」</div>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="opt"><b>A</b><span>AI</span></div>
+<div class="opt"><b>B</b><span>國小生</span></div>
+<div class="opt"><b>C</b><span>詩人</span></div>
+</div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">30</span><span class="page-label__bar"></span><span>數學詩</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">《上學的秒數》</div><div class="sp" style="grid-template-columns:1fr calc(25*var(--u));">
+<div class="col" style="gap:calc(1.6*var(--u));">
+<div class="poem">下課，只剩<span class="mk">零點一六小時</span>，<br>上課，卻有<span class="mk">兩千四百秒</span>鐘。<br>我的快樂是個<span class="mk">分數</span>，<br><span class="mk">分子</span>是期待，<span class="mk">分母</span>是無限延長的講義。</div>
+<div class="box g2" data-reveal><div class="t">下課 10 分鐘寫成「小時」，上課 40 分鐘寫成「秒」，<br>她用<span class="em">單位換算</span>寫心情</div></div>
+<div class="t s m">詹巧萱｜秀朗國小｜2025 AI數感盃金獎（與 AI 共創）</div>
+</div>
+<figure class="pic" style="height:calc(31*var(--u));"><img src="assets/img/poem-seconds-ai-image.png" alt=""></figure>
+</div><div class="cite">右圖：參賽作品附圖（參賽者與 AI 共創）</div></div>
+
+
+</section>
+<section class="slide hn" style="background:#FEF4E7;">
+<img class="hn__img" src="assets/img/hippasus-greek-sea-sqrt.png" alt="黎明的古希臘海邊，海面浮出一半的根號">
+<div class="hn__scrim"></div>
+<div class="page-label"><span class="page-label__num">31</span><span class="page-label__bar"></span><span>數學詩</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame">
+<div class="hn__head"><div class="hn__title">〈或許——致希帕索斯〉</div><div class="hn__by">湖南蟲</div></div>
+<div class="hn__body stepclick" data-n="3" onclick="var n=+this.dataset.n,k=(+this.dataset.k||0)+1;if(k>n)return;this.dataset.k=k;this.classList.add('s'+k);if(k===n){this.classList.add('is-done');this.closest('.slide').classList.add('is-stepdone');}event.stopPropagation();">
+<div class="hn__chips"><span class="hn__chip" data-i="0" onclick="var b=this.closest('.hn__body'),i=+this.dataset.i;for(var j=1;j<=3;j++){if(b.classList.contains('s'+j)!==(j<=i))b.classList.toggle('s'+j);}if(i)b.dataset.k=i;else delete b.dataset.k;b.classList.toggle('is-done',i===3);b.closest('.slide').classList.toggle('is-stepdone',i===3);event.stopPropagation();"><i>1</i>整數</span><span class="hn__chip" data-i="1" onclick="var b=this.closest('.hn__body'),i=+this.dataset.i;for(var j=1;j<=3;j++){if(b.classList.contains('s'+j)!==(j<=i))b.classList.toggle('s'+j);}if(i)b.dataset.k=i;else delete b.dataset.k;b.classList.toggle('is-done',i===3);b.closest('.slide').classList.toggle('is-stepdone',i===3);event.stopPropagation();"><i>2</i>另一個地方</span><span class="hn__chip" data-i="2" onclick="var b=this.closest('.hn__body'),i=+this.dataset.i;for(var j=1;j<=3;j++){if(b.classList.contains('s'+j)!==(j<=i))b.classList.toggle('s'+j);}if(i)b.dataset.k=i;else delete b.dataset.k;b.classList.toggle('is-done',i===3);b.closest('.slide').classList.toggle('is-stepdone',i===3);event.stopPropagation();"><i>3</i>除盡</span><span class="hn__chip" data-i="3" onclick="var b=this.closest('.hn__body'),i=+this.dataset.i;for(var j=1;j<=3;j++){if(b.classList.contains('s'+j)!==(j<=i))b.classList.toggle('s'+j);}if(i)b.dataset.k=i;else delete b.dataset.k;b.classList.toggle('is-done',i===3);b.closest('.slide').classList.toggle('is-stepdone',i===3);event.stopPropagation();"><i>4</i>問號</span><div class="hn__hint">點一下看下一段</div></div>
+<div class="hn__stage"><div class="hn__st"><p>或許是晴天</p><p>或許正下雨</p><p>或許，也就是尋常一日</p><p>我身為<b class="hn__k">整數</b></p><p>曬著一個太陽</p><p>淋幾滴雨</p><p>被無數的星星</p><p>觀察著</p></div><div class="hn__st"><p>或許，還有另一個地方</p><p><b class="hn__k">五種</b>季節</p><p>栽培著新的物種</p><p>奇花異草</p><p>勾引我創造新的語言甚至戰爭</p><p>也或許沒有</p><p>地球持續<b class="hn__k">公轉自轉</b></p><p>難怪我時常暈眩</p></div><div class="hn__st"><p>或許，世界早被<b class="hn__k">除盡</b></p><p>星球<b class="hn__k">除以</b>赤道</p><p>大氣<b class="hn__k">除以</b>風</p><p>陽光<b class="hn__k">除以</b>萬物（得出陰影？）</p><p>生命<b class="hn__k">除以</b>，<b class="hn__k">無限</b>分割的時間</p><p>年月日分秒——</p><p>等等，那無法預測的<b class="hn__k">閏秒</b></p><p>是從哪裡冒出來？</p></div><div class="hn__st"><p>還有比時間更棒的禮物嗎？</p><p>有比未知更棒的賜予嗎？</p><p>或許，還有另一種</p><p><b class="hn__k">可能性</b></p><p>無法說明，難以理解</p><p>像一個最誠實的<b class="hn__k">問號</b></p><p>掉在路邊</p><p>等待誰去撿起來</p></div></div>
+</div>
+<div class="hn__cite">希帕索斯：畢達哥拉斯學派的一員，相傳因為發現 √2 寫不成分數，被丟進海裡｜右圖為 AI 生成示意圖</div>
+</div>
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">32</span><span class="page-label__bar"></span><span>數學詩</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">一百隻鳥的畫，怎麼只數到八隻？</div><div class="sp" style="grid-template-columns:calc(20*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(32*var(--u));"><img src="assets/img/bianwenjin-sanyou-baiqin-cma.jpg" alt=""></figure>
+<div class="col" style="gap:calc(1.8*var(--u));">
+<div class="q">「天生一隻又一隻，<br>三四五六七八隻。」</div>
+<div class="t m">相傳明代狀元倫文敘十三歲時，題在〈百鳥歸巢圖〉上</div>
+<div class="box g2" data-reveal><div class="eq" style="color:#fff;">1 ＋ 1 ＋ 3×4 ＋ 5×6 ＋ 7×8<br>＝ <span class="em" style="color:var(--vi-yellow)">100</span></div></div>
+</div></div><div class="cite">示意：明・邊文進〈三友百禽圖〉，克里夫蘭美術館（CC0）</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">33</span><span class="page-label__bar"></span><span>數學詩</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">數學家寫的詩：〈僧分饅頭歌〉</div><div class="sp" style="grid-template-columns:calc(21*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(30*var(--u));"><img src="assets/img/cheng-dawei-portrait.jpg" alt="" style="object-position:50% 20%"></figure>
+<div class="col" style="gap:calc(1.8*var(--u));">
+<div class="q">「一百饅頭一百僧，大和三箇更無爭，<br>小和三人分一箇，大小和尚得幾丁？」</div>
+<div class="t m">程大位《算法統宗》，六十歲完成，收了 595 題</div>
+<div class="box g2" data-reveal><div class="t">1 個大和尚＋3 個小和尚，4 人剛好吃 4 個<br>100 ÷ 4 ＝ 25 組 → <span class="em">大 25、小 75</span></div></div>
+</div></div><div class="cite">程大位像，Wikimedia Commons（PD）</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">34</span><span class="page-label__bar"></span><span>數學詩</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">綠島上的數學詩人：曹開</div><div class="sp" style="grid-template-columns:calc(17*var(--u)) 1fr calc(32*var(--u));gap:calc(3*var(--u));">
+<div class="col" style="gap:calc(.8*var(--u));">
+<figure class="pic fit" style="height:calc(23*var(--u));background:transparent;"><img src="assets/img/book-xiaoshudian-zhi-ge-cover.jpg" alt=""></figure>
+<div class="t s m">278 首數學詩</div>
+</div>
+<div class="col" style="gap:calc(.6*var(--u));">
+<div class="t b g">〈獨裁的數學公式〉</div>
+<div class="poem st" style="font-size:calc(2.3*var(--u));">人間繁分式裡<br>他構造一條倒函數<br>成為 P－1 分之 1<span class="gap"></span>在專制的公式裡<br>盤鎮於最高層的寶座上<br>傲視下界　威風凜凜<br>獨一無二　就是至尊的象徵</div>
+</div>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="sp" style="grid-template-columns:auto 1fr;gap:calc(1.6*var(--u));flex:none;">
+<div class="eq" style="font-size:calc(4.6*var(--u));text-align:center;line-height:1.1;">1<br><span style="display:block;border-top:4px solid var(--green-dark);">P − 1</span></div>
+<div class="t">P ＝ People<br><span class="m">P 越來越大？</span></div></div>
+<div class="box g2" data-reveal><div class="poem st" style="color:#fff;font-size:calc(2.3*var(--u));">而當 P 值趨向無窮大<br>他的價碼<span class="em">趨近零</span><br>要是 P 值趨向極小<br>他乃形成<span class="em">負面的數目</span></div></div>
+</div></div><div class="cite">書封：《小數點之歌：曹開數學詩集》，呂興昌編，書林 2005</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">35</span><span class="page-label__bar"></span><span>數學詩</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">千里江陵，真的一天到得了嗎？</div><div class="sp" style="grid-template-columns:1fr 1.15fr;">
+<div class="col" style="gap:calc(1*var(--u));">
+<div class="poem" style="font-size:calc(3*var(--u));">朝辭白帝彩雲間，<br><span class="mk">千里江陵一日還</span>。<br>兩岸猿聲啼不住，<br>輕舟已過萬重山。</div><div class="t s m">李白〈早發白帝城〉</div>
+</div>
+<div class="col" style="gap:0;">
+<div class="row"><div class="k" style="font-size:calc(3.2*var(--u))">390.6<small>km</small></div><div class="t">白帝城到江陵</div></div>
+<div class="row"><div class="k" style="font-size:calc(3.2*var(--u))">14<small>小時</small></div><div class="t">「一日」抓日出到日落</div></div>
+<div class="row"><div class="k" style="font-size:calc(3.2*var(--u))">27.9<small>km/h</small></div><div class="t">平均要這麼快</div></div>
+<div class="row" data-reveal><div class="k" style="font-size:calc(3.2*var(--u))">9～10.8</div><div class="t">長江順水的流速，<br>船自己還得再快 17 以上</div></div>
+</div></div><div class="cite">數據：2018 數感盃專題報導國中組第 1 名作品；《水經注》：「朝發白帝，暮到江陵。」</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">36</span><span class="page-label__bar"></span><span>數學詩</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">AI數感盃：孩子和 AI 一起寫數學詩</div><div class="sp" style="grid-template-columns:1.1fr 1fr;">
+<figure class="pic" style="height:calc(32*var(--u));"><img src="assets/brand/cup-poem-wall-2026.jpg" alt=""></figure>
+<div class="col" style="gap:0;">
+<div class="row" style="grid-template-columns:calc(18*var(--u)) 1fr;"><div class="k">2018</div><div class="t">開始舉辦</div></div>
+<div class="row" style="grid-template-columns:calc(18*var(--u)) 1fr;"><div class="k">近2000<small>件</small></div><div class="t">2026 年的作品</div></div>
+<div class="row" style="grid-template-columns:calc(18*var(--u)) 1fr;"><div class="k" style="font-size:calc(3*var(--u))">NumNum</div><div class="t">和 AI 詩人一起寫</div></div>
+</div></div></div>
+<img class="mascot mascot--sm mascot--br" src="assets/mascots/Num_O_05.png" alt="">
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">37</span><span class="page-label__bar"></span><span>數學與流行歌</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">有一張專輯，就叫《數學家》</div><div class="sp" style="grid-template-columns:calc(52*var(--u)) 1fr;gap:calc(3*var(--u));">
+<div class="col" style="gap:calc(.6*var(--u));">
+<div class="yt" title="點一下播放" onclick="event.stopPropagation();if(this.querySelector('iframe'))return;var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/kUygndfz7yw?autoplay=1&amp;rel=0';f.allow='autoplay; encrypted-media; fullscreen';f.allowFullscreen=true;this.appendChild(f);"><img src="assets/img/mv-proven-no-solution.jpg" alt="〈證明・無解〉官方歌詞版 MV"><span class="yt__play"></span></div>
+<div class="t s m">點畫面播放｜官方歌詞版 MV，歌詞會跟著出現</div>
+</div>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="t l b">〈證明・無解〉</div>
+<div class="t">林正《數學家》（2017）<br><span class="m">詞：葛大為　曲：林正</span></div>
+<div class="box g2"><div class="t">林正，<span class="em">政大應用數學系</span>畢業</div></div>
+</div></div><div class="cite">MV：擎天娛樂官方 YouTube 頻道</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">38</span><span class="page-label__bar"></span><span>數學與藝術</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">這本數學書的插畫，是達文西畫的</div><div class="sp" style="grid-template-columns:calc(30*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(26*var(--u));"><img src="assets/img/pacioli.jpg" alt=""></figure>
+<div class="col" style="gap:calc(1.6*var(--u));">
+<figure class="pic" style="height:calc(11*var(--u));background:#fff;"><img src="assets/img/pacioli-poly.jpg" alt="" style="object-fit:contain"></figure>
+<div class="t">帕西奧利《神聖比例》（1509），<br>書裡的多面體插圖出自<span class="em">達文西</span></div>
+<div class="t s m">帕西奧利是會計之父，也是達文西的數學老師</div>
+</div></div><div class="cite">圖：〈帕西奧利像〉（1495）、《神聖比例》插圖，Wikimedia Commons（PD）</div></div>
+<img class="mascot mascot--sm mascot--br" src="assets/mascots/Num_O_14.png" alt="">
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">39</span><span class="page-label__bar"></span><span>數學與藝術</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">黃金比例，真的到處都有？</div><div class="sp" style="grid-template-columns:1.15fr 1fr;">
+<figure class="pic" style="height:calc(26*var(--u));"><img src="assets/img/golden-all.jpg" alt=""></figure>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="t">蒙娜麗莎、鸚鵡螺、向日葵，<br>網路上說處處都是 1：1.618</div>
+<div class="col" data-reveal style="gap:calc(1*var(--u));">
+<figure class="pic" style="height:calc(14*var(--u));"><img src="assets/img/mondrian-nope.jpg" alt=""></figure>
+<div class="box g2"><div class="t">很多是<span class="em">事後硬套</span>上去的</div></div>
+</div></div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">40</span><span class="page-label__bar"></span><span>數學與藝術</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">葛飾北齋的浪：大浪裡有小浪</div><div class="sp" style="grid-template-columns:1.4fr 1fr;">
+<figure class="pic" style="height:calc(27*var(--u));background:#fff;"><img src="assets/img/hokusai.jpg" alt="" style="object-fit:contain"></figure>
+<div class="col" style="gap:calc(1.6*var(--u));">
+<div class="t">〈神奈川沖浪裏〉的浪花：<br>大浪裡有小浪，<br>小浪裡還有更小的浪</div>
+<div class="box g2"><div class="t">一小塊跟整體長得很像，<br>數學上叫<span class="em">碎形</span></div></div>
+</div></div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">41</span><span class="page-label__bar"></span><span>數學與藝術</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">只有梵谷畫得出紊流？</div><div class="sp" style="grid-template-columns:1.45fr 1fr;">
+<figure class="pic" style="height:calc(29*var(--u));"><img src="assets/img/starry.jpg" alt="" style="object-position:50% 40%"></figure>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="t">〈星夜〉裡漩渦的大小分布，<br>跟<span class="em">紊流</span>的數學規律對得上</div>
+<figure class="pic" style="height:calc(12*var(--u));"><img src="assets/img/jupiter.jpg" alt=""></figure>
+<div class="t s m">上：木星的雲。這件事吵了快 20 年</div>
+</div></div><div class="cite">〈星夜〉，梵谷 1889，MoMA（PD）；木星：NASA/JPL（PD）</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">42</span><span class="page-label__bar"></span><span>數學與藝術</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">杜勒〈憂鬱 I〉：牆上掛著一個幻方</div><div class="sp" style="grid-template-columns:calc(24*var(--u)) calc(24*var(--u)) 1fr;gap:calc(2.4*var(--u));">
+<figure class="pic" style="height:calc(31*var(--u));"><img src="assets/img/melencolia.jpg" alt=""></figure>
+<figure class="pic" style="height:calc(24*var(--u));"><img src="assets/img/magic-square.jpg" alt=""></figure>
+<div class="col" style="gap:calc(1.6*var(--u));">
+<div class="t">每一行、每一列、<br>兩條對角線，<br>加起來都是 <span class="em">34</span></div>
+<div class="box g2" data-reveal><div class="t">最下排中間兩格：<br><span class="em">15、14</span><br>就是作品年份 1514</div></div>
+</div></div><div class="cite">杜勒〈憂鬱 I〉（1514），Wikimedia Commons（PD）</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">43</span><span class="page-label__bar"></span><span>算額</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">江戶時代的日本人，把數學題掛在神社裡</div><div class="sp" style="grid-template-columns:calc(40*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(30*var(--u));"><img src="assets/img/sangaku-1859.jpg" alt=""></figure>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="t">畫在木板上、獻給神社的數學題，叫「<span class="em">算額</span>」</div>
+<div class="row" style="grid-template-columns:calc(12*var(--u)) 1fr;"><div class="k" style="font-size:calc(3.2*var(--u))">1683</div><div class="t">京都御香宮：出題，<span class="b">不寫答案</span></div></div>
+<div class="row" style="grid-template-columns:calc(12*var(--u)) 1fr;"><div class="k" style="font-size:calc(3.2*var(--u))">1691</div><div class="t">八坂神社：有人掛出解答</div></div>
+<div class="box g2" data-reveal><div class="t">題目在一間廟，答案在另一間廟，中間隔了<span class="em">八年</span></div></div>
+</div></div><div class="cite">照片：金王八幡宮算額（1859），和算の館 wasan.jp</div></div>
+<img class="mascot mascot--sm mascot--br" src="assets/mascots/Num_O_13.png" alt="">
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">44</span><span class="page-label__bar"></span><span>算額</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">《天地明察》：書名，就是算額上的兩個字</div><div class="sp" style="grid-template-columns:calc(17*var(--u)) calc(17*var(--u)) 1fr;gap:calc(2.6*var(--u));">
+<div class="col" style="gap:calc(.6*var(--u));">
+<figure class="pic fit" style="height:calc(26*var(--u));background:transparent;"><img src="assets/img/book-tenchi-meisatsu-cover.jpg" alt="《天地明察》台灣中文版書封"></figure>
+<div class="t s m" style="text-align:center;">台灣中文版</div>
+</div>
+<div class="col" style="gap:calc(.6*var(--u));">
+<figure class="pic fit" style="height:calc(26*var(--u));background:transparent;"><img src="assets/img/book-tenchi-meisatsu-jp-kadokawa.png" alt="《天地明察》日文原版書封"></figure>
+<div class="t s m" style="text-align:center;">日文原版</div>
+</div>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="t"><span class="b">沖方丁，2010 本屋大賞</span><br>故事從金王八幡宮的算額開始</div>
+<div class="t">解對了，出題的人會在旁邊寫上「<span class="em">明察</span>」</div>
+<div class="box g2" data-reveal><div class="t">1859 年那面算額後來被重算：<br><span class="em">答案是錯的</span>，已經掛了一百六十多年</div></div>
+<a class="trl" href="https://www.youtube.com/watch?v=Kb8yz-DNOmA" target="_blank" rel="noopener"><img src="assets/img/tenchi-meisatsu-trailer-thumb.jpg" alt=""><div><b>▶ 電影預告片</b><span>《天地明察》（2012）</span></div></a>
+</div></div><div class="cite">書封：沖方丁《天地明察》台灣中文版；日文原版（角川書店，2009）</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">45</span><span class="page-label__bar"></span><span>數學玩具</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">一百年前的茶行廣告：拼出一個 T</div><div class="sp" style="grid-template-columns:1.25fr 1fr;">
+<figure class="pic" style="height:calc(28*var(--u));background:#fff;"><img src="assets/img/tpuzzle-kellams.png" alt="" style="object-fit:contain"></figure>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="q s" style="font-size:calc(2.4*var(--u));">「White Rose Ceylon Tea<br>is a perfect T」</div>
+<div class="t">紐約茶行隨貨附上 4 片拼圖，<br>拼得出 T，就懂這個諧音梗</div>
+<div class="box g2" data-reveal><div class="t">只有 4 片，卻比 7 片的七巧板<span class="em">還難</span></div></div>
+</div></div><div class="cite">圖：Kellam's Teas 字母拼圖廣告（20 世紀初，紐約）</div></div>
+
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">46</span><span class="page-label__bar"></span><span>數學玩具</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">九九猿：會算乘法的猴子</div><div class="sp" style="grid-template-columns:calc(30*var(--u)) 1fr;">
+<figure class="pic" style="height:calc(28*var(--u));background:#fff;"><img src="assets/img/monkey-toy.jpg" alt="" style="object-fit:contain"></figure>
+<div class="col" style="gap:calc(1.4*var(--u));">
+<div class="t">兩隻腳指向兩個數字，<br>手就會指向<span class="em">相乘的答案</span></div>
+<div class="t s m">1916 年，前數學老師 Robertson 申請專利<br>名字來自當年紅極一時的表演猩猩 Consul</div>
+<div class="q s" style="font-size:calc(2.2*var(--u));" data-reveal>「不管小孩聰明或愚笨，<br>這隻猴子永遠不會因為回答他們的問題<br>而失去耐心。」</div>
+</div></div><div class="cite">照片：Joe Haupt，Wikimedia Commons（CC BY 2.0）</div></div>
+
+
+</section>
+<section class="slide chp" style="background:#FEF4E7;">
+<div class="chp__l"><img src="assets/brand/camp-class.jpg" alt="" style="object-position:50% 50%;"><div class="chp__num">03</div></div>
+<div class="chp__r"><div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="chp__lab">CHAPTER 03</div><div class="chp__t">結語</div><div class="chp__s">為什麼那麼多人，<br>說自己討厭數學？</div><div class="chp__time">10 分鐘</div></div>
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">48</span><span class="page-label__bar"></span><span>結語</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">我們討厭的，可能是數學課</div><div class="main" style="gap:calc(1.2*var(--u));">
+<div style="width:calc(64*var(--u));align-self:center;"><svg class="svgw" viewBox="0 0 1100 380" role="img" aria-label="PISA 2012 台灣與 OECD 數學興趣比較"><text x="412" y="72" text-anchor="end" font-size="30" font-weight="700" fill="#3C3C3C">喜歡閱讀數學相關的東西</text><rect x="430" y="28" width="350" height="40" rx="5" fill="#379C39"/><text x="790" y="59" font-size="28" font-weight="700" fill="#379C39">臺灣 40.4%</text><rect x="430" y="74" width="265" height="40" rx="5" fill="#686968"/><text x="705" y="105" font-size="28" font-weight="700" fill="#686968">OECD 30.6%</text><text x="412" y="192" text-anchor="end" font-size="30" font-weight="700" fill="#3C3C3C">因為喜歡而做數學</text><rect x="430" y="148" width="349" height="40" rx="5" fill="#379C39"/><text x="789" y="179" font-size="28" font-weight="700" fill="#379C39">臺灣 40.3%</text><rect x="430" y="194" width="330" height="40" rx="5" fill="#686968"/><text x="770" y="225" font-size="28" font-weight="700" fill="#686968">OECD 38.1%</text><text x="412" y="312" text-anchor="end" font-size="30" font-weight="700" fill="#3C3C3C">對數學課學的東西有興趣</text><rect x="430" y="268" width="361" height="40" rx="5" fill="#379C39"/><text x="801" y="299" font-size="28" font-weight="700" fill="#379C39">臺灣 41.7%</text><rect x="430" y="314" width="460" height="40" rx="5" fill="#686968"/><text x="900" y="345" font-size="28" font-weight="700" fill="#686968">OECD 53.1%</text><rect data-reveal x="6" y="256" width="1088" height="110" rx="10" fill="none" stroke="#BE2026" stroke-width="4"/></svg></div>
+<div class="box g2" data-reveal><div class="t">計算只是數學的一小部分，數學其實是語言，<br>是有別於中英文這樣自然語言的，另一種語言。</div></div>
+</div><div class="cite">資料：OECD (2013), PISA 2012 Results: Ready to Learn (Vol. III), Table III.3.4a；15 歲學生</div></div>
+
+
+</section>
+<section class="slide lang" style="background:#FEF4E8;">
+<img class="lang__img" src="assets/img/math-as-language-wide.png" alt="數學是一種語言（AI 生成示意圖）">
+<div class="lang__scrim"></div>
+<div class="page-label"><span class="page-label__num">49</span><span class="page-label__bar"></span><span>結語</span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="h">數學，其實是一種語言</div>
+<div class="lang__q q">「計算只是數學的一小部分，<br>數學其實是語言，<br>是有別於中英文<br>這樣自然語言的，<br>另一種語言。」</div>
+</div>
+
+</section>
+<section class="slide " style="background:#FEF4E7;">
+<div class="page-label"><span class="page-label__num">50</span><span class="page-label__bar"></span><span></span></div>
+<div class="brand-footer"><svg class="brand-logo" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+<div class="slide-frame"><div class="wall" style="grid-template-columns:repeat(2,1fr);">
+<figure><img src="assets/brand/camp-class.jpg" alt=""><figcaption><b>冬夏令營</b></figcaption></figure>
+<figure><img src="assets/brand/cup-group-2026.jpg" alt="" style="object-position:50% 40%"><figcaption><b>AI數感盃</b></figcaption></figure>
+<figure><img src="assets/brand/expo-entrance-2022.jpg" alt=""><figcaption><b>數學展覽</b></figcaption></figure>
+<figure><img src="assets/brand/numinai-kid.jpg" alt=""><figcaption><b>NUMiNAI</b><span>學習型ＡＩ</span></figcaption></figure>
+</div></div>
+
+
+</section>
+<section class="slide end" style="background:#215A39;">
+<img class="bg" src="assets/brand/kite-ntsec-full.jpg" alt="" data-bleed="50 50">
+<div class="end__c">
+<div class="end__t">我想讓全台灣的學生，<br>愛上數學</div>
+<div class="end__w">賴雲台、賴以威</div>
+</div>
+<div class="brand-footer"><svg class="brand-logo logo-mono" viewBox="0 0 162.16 45.83" role="img" aria-label="數感實驗室"><use href="#nl-logo"/></svg></div>
+
+</section>
+</div>
+<script id="deck-edits" type="application/json">{"rev":5,"edits":{}}</script>
+<script src="presenter.js"></script>
+</body>
+</html>
